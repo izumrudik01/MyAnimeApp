@@ -16,7 +16,7 @@ class AuthActivity : AppCompatActivity() {
         val userLogin: EditText = findViewById(R.id.user_login_log)
         val userPassword: EditText = findViewById(R.id.user_password_log)
         val button: Button = findViewById(R.id.button_log)
-        val linkToAuth: TextView = findViewById(R.id.link_to_auth)
+        val linkToAuth: TextView = findViewById(R.id.link_to_reg)
 
         linkToAuth.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -33,16 +33,14 @@ class AuthActivity : AppCompatActivity() {
                 val isAuth = db.getUser(login, password)
 
                 if (isAuth) {
-                    Toast.makeText(this, "Пользователь $login был авторизован", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(this, "Пользователь $login был авторизован", Toast.LENGTH_LONG).show()
                     userLogin.text.clear()
                     userPassword.text.clear()
-                } else
+                } else {
                     Toast.makeText(
                         this,
-                        "Логин или пароль были введены не верно",
-                        Toast.LENGTH_LONG
-                    ).show()
+                        "Логин или пароль были введены не верно", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }

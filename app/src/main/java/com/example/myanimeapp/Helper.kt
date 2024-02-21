@@ -23,7 +23,7 @@ class Helper(val context: Context, val factory: SQLiteDatabase.CursorFactory?) :
         values.put("password", user.password)
 
         val db = this.writableDatabase
-        db.insert("users", null, values)
+        db.insert("user", null, values)
 
         db.close()
 
@@ -32,7 +32,9 @@ class Helper(val context: Context, val factory: SQLiteDatabase.CursorFactory?) :
     fun getUser(login: String, password: String): Boolean {
         val db = this.readableDatabase
 
-        val result = db.rawQuery("SELECT * FROM users WHERE login = '$login' AND password = '$password'", null)
+        val result = db.rawQuery("SELECT * FROM user WHERE login = '$login' AND password = '$password'", null)
         return result.moveToFirst()
+
+        db.close()
     }
 }
