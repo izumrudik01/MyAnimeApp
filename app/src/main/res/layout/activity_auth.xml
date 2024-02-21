@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="#0A1C34"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AuthActivity">
 
     <TextView
-        android:id="@+id/link_to_reg"
+        android:id="@+id/auth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/alike_angular"
@@ -18,10 +18,10 @@
         android:layout_marginTop="120dp"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:text="Регистарция" />
+        android:text="Авторизация" />
 
     <EditText
-        android:id="@+id/user_login"
+        android:id="@+id/user_login_log"
         android:layout_width="220dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -36,7 +36,7 @@
         android:textColor="@color/white"/>
 
     <EditText
-        android:id="@+id/user_password"
+        android:id="@+id/user_password_log"
         android:textColor="@color/white"
         android:layout_width="220dp"
         android:layout_height="50dp"
@@ -51,24 +51,24 @@
         android:drawablePadding="10dp"/>
 
     <Button
-        android:id="@+id/button_reg"
+        android:id="@+id/button_log"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Зарегистрироваться"
+        android:text="Войти"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#2E4553"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="15dp"/>
 
     <TextView
-        android:id="@+id/link_to_auth"
+        android:id="@+id/link_to_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="65dp"
         android:fontFamily="sans-serif"
-        android:text="Уже есть аккаунт? Войти"
+        android:text="Нет аккаунта? Зарегистрироваться"
         android:textColor="#fdfdfd"
         android:textSize="18sp"
         android:textStyle="bold" />
