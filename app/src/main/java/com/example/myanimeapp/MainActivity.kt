@@ -1,6 +1,7 @@
 package com.example.myanimeapp
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -12,6 +13,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         val userLogin: EditText = findViewById(R.id.user_login)
         val userPassword: EditText = findViewById(R.id.user_password)
@@ -29,7 +32,8 @@ class MainActivity : AppCompatActivity() {
                 val db = Helper(this, null)
                 db.addUser(user)
                 Toast.makeText(this, "Пользователь $login был зарегистрирован", Toast.LENGTH_LONG).show()
-
+                val intent = Intent(this, AuthActivity::class.java)
+                startActivity(intent)
 
             }
         }

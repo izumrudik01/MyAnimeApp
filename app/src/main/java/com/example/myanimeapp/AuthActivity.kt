@@ -1,6 +1,7 @@
 package com.example.myanimeapp
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -12,6 +13,8 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         val userLogin: EditText = findViewById(R.id.user_login_log)
         val userPassword: EditText = findViewById(R.id.user_password_log)
@@ -36,6 +39,9 @@ class AuthActivity : AppCompatActivity() {
                     Toast.makeText(this, "Пользователь $login был авторизован", Toast.LENGTH_LONG).show()
                     userLogin.text.clear()
                     userPassword.text.clear()
+
+                    val intent = Intent(this, AnimeActivity::class.java)
+                    startActivity(intent)
                 } else {
                     Toast.makeText(
                         this,
