@@ -16,4 +16,12 @@
         android:layout_marginTop="5dp"
         android:background="@null"
         app:srcCompat="@drawable/baseline_person_30" />
+
+    <ImageView
+        android:id="@+id/AnimePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/ic_launcher_background" />
+
 </LinearLayout>
