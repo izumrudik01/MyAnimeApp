@@ -7,6 +7,7 @@ android {
     namespace = "com.example.myanimeapp"
     compileSdk = 34
 
+
     defaultConfig {
         applicationId = "com.example.myanimeapp"
         minSdk = 24
@@ -33,6 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
 }
 
 dependencies {
