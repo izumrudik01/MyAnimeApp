@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myanimeapp.R.layout
-import org.jsoup.Jsoup
 
 class AnimeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,27 +12,28 @@ class AnimeActivity : AppCompatActivity() {
         setContentView(layout.activity_anime)
 
 
-        val url = "https://jut.su/anime"
-        val document = Jsoup.connect(url).get()
-        var selectedDiv = document.select("div.aaname")
-        var titles = mutableListOf<String>()
-        for (element in selectedDiv) {
-            titles.add(element.text())
-        }
+//        val url = "https://jut.su/anime"
+//        val document = Jsoup.connect(url).get()
+//        var selectedDiv1 = document.select("div.aaname").first()?.text()
+//        var titles = listOf(selectedDiv1)
 
+//        val url1 = "https://jut.su/anime"
+//        val document1 = Jsoup.connect(url1).get()
+//            val imageElements = document1.select("div.all_anime_image").first()
+//        val imageHref = imageElements?.attr("style").toString()
+//        val finalUrl = extractUrl(imageHref)
+//
+//
+//
+//        println("$finalUrl")
+//
+//
+//
+//
+//
+//        println(titles)
+//        println("${titles.size}")
 
-        val url1 = "https://jut.su/anime"
-        val document1 = Jsoup.connect(url1).get()
-            val imageElements = document1.select("image[href] style[src]").text()
-                println("Ссылка на изображение: ${imageElements.length}")
-        println("$imageElements")
-
-
-
-
-
-        println("Содержимое: ${titles}")
-        println("${titles.size}")
 
 
 
@@ -44,7 +44,21 @@ class AnimeActivity : AppCompatActivity() {
 
         }
     }
+
+
+
+    }
+
+
+fun extractUrl(input: String): String? {
+    val regex = Regex("url\\('([^']+)'\\)")
+    val matchResult = regex.find(input)
+    return matchResult?.groupValues?.getOrNull(1)
 }
+
+
+
+
 
 
 
