@@ -2,14 +2,12 @@ package com.example.myanimeapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myanimeapp.R.layout
 
 class AnimeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout.activity_anime)
+//        setContentView(layout.activity_anime)
 
 
 //        val url = "https://jut.su/anime"
@@ -37,8 +35,8 @@ class AnimeActivity : AppCompatActivity() {
 
 
 
-        val linkToProfile: ImageButton = findViewById(R.id.goToProfile)
-        linkToProfile.setOnClickListener() {
+//        val linkToProfile: ImageButton = findViewById(R.id.goToProfile)
+//        linkToProfile.setOnClickListener() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
 
@@ -47,7 +45,7 @@ class AnimeActivity : AppCompatActivity() {
 
 
 
-    }
+//    }
 
 
 fun extractUrl(input: String): String? {

@@ -36,15 +36,6 @@
             android:layout_centerInParent="true"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/profileEditBut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit_white"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
-            android:background="@android:color/transparent"/>
 
      </RelativeLayout>
 
@@ -52,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="180dp"
+        android:backgroundTint="@color/blue_2"
         android:background="@drawable/shapre_rect01"/>
     
     <com.google.android.material.imageview.ShapeableImageView
@@ -73,39 +65,28 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
             android:text="Full Name"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/emailTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameTv"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:text="abc@example.com"/>
 
     <LinearLayout
         android:id="@+id/detailsLl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/nameTv"
-        android:layout_marginTop="20dp">
+        android:layout_below="@id/emailTv"
+        android:layout_marginTop="8dp">
         
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Аккаунт"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/accountTypeTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textColor="@color/black"/>
-
-        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -118,40 +99,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Участник"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:textStyle="bold"/>
                 <TextView
                     android:id="@+id/memberDateTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="N/A"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/white"/>
 
 
       </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Любимые Аниме"
-                android:textColor="@color/black"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/favoriteAnimeCountTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N/A"
-                android:textColor="@color/black"/>
-
-
-        </LinearLayout>
 
 
     </LinearLayout>

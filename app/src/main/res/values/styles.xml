@@ -6,4 +6,12 @@
         <item name="cornerFamily">rounded</item>
     <item name="cornerSize">20%</item>
     </style>
+    <style name="ProgressBarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">#3a3a64</item>
+    </style>
+
+    <style name="Button.Blue" parent="ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/blue_3</item>
+    </style>
+
 </resources>

@@ -1,53 +1,104 @@
 package com.example.myanimeapp
 
+import android.app.ProgressDialog
 import android.content.Intent
-import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myanimeapp.databinding.ActivityAuthBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class AuthActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityAuthBinding
+
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    private lateinit var progressDialog: ProgressDialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        binding = ActivityAuthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        firebaseAuth = FirebaseAuth.getInstance()
 
-        val userLogin: EditText = findViewById(R.id.user_login_log)
-        val userPassword: EditText = findViewById(R.id.user_password_log)
-        val button: Button = findViewById(R.id.button_log)
-        val linkToAuth: TextView = findViewById(R.id.link_to_reg)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Пожалуйста, подождите")
+        progressDialog.setCanceledOnTouchOutside(false)
 
-        linkToAuth.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-        button.setOnClickListener {
-            val login = userLogin.text.toString().trim()
-            val password = userPassword.text.toString().trim()
-
-            if (login == "" || password == "")
-                Toast.makeText(this, "Не все поля заполнены", Toast.LENGTH_LONG).show()
-            else {
-                val db = Helper(this, null)
-                val isAuth = db.getUser(login, password)
-
-                if (isAuth) {
-                    Toast.makeText(this, "Пользователь $login был авторизован", Toast.LENGTH_LONG).show()
-                    userLogin.text.clear()
-                    userPassword.text.clear()
-
-                    val intent = Intent(this, AnimeActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(
-                        this,
-                        "Логин или пароль были введены не верно", Toast.LENGTH_LONG).show()
-                }
+            binding.noAccTv.setOnClickListener{
+                startActivity(Intent(this, RegActivity::class.java))
             }
+
+        binding.loginBut.setOnClickListener {
+            validateData()
         }
     }
+
+    private var email = ""
+    private var password = ""
+
+    private fun validateData() {
+        email = binding.emailEt.text.toString().trim()
+        password = binding.passwordEt.text.toString().trim()
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(this, "Неправильный формат почты", Toast.LENGTH_SHORT).show()
+        }
+        else if (password.isEmpty()) {
+            Toast.makeText(this, "Введите пароль", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            loginUser()
+        }
+    }
+
+    private fun loginUser() {
+        progressDialog.setMessage("Вход...")
+        progressDialog.show()
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnSuccessListener {
+                checkUser()
+            }
+            .addOnFailureListener { e ->
+                progressDialog.dismiss()
+                Toast.makeText(this, "Вход не удался из-за ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun checkUser() {
+
+        progressDialog.setMessage("Проверка пользователя...")
+
+        val firebaseUser = firebaseAuth.currentUser!!
+
+        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        ref.child(firebaseUser.uid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+
+                    val userType = snapshot.child("userType").value
+                        startActivity(Intent(this@AuthActivity, DashboardUserActivity::class.java))
+                        finish()
+                    }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
+
+
+
+    }
 }
+
+

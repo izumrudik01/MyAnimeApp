@@ -1,4 +1,3 @@
 package com.example.myanimeapp
 
-class User(val login: String, val password: String) {
-}
+data class User(var title : String ?= null, var description : String ?= null)

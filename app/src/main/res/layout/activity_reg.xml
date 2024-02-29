@@ -1,56 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/blue_4"
-    tools:context=".AuthActivity">
+    tools:context=".RegActivity">
 
     <RelativeLayout
         android:id="@+id/ToolbarRl"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/shape_toolbar01">
-        
-        <ImageView
-            android:id="@+id/iconIv"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/img"/>
+
+        <ImageButton
+            android:id="@+id/backBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_white" />
+
+            <ImageView
+                android:id="@+id/iconIv"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/img" />
 
         <TextView
+            android:id="@+id/RegisterTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/iconIv"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="Войти в аккаунт"
+            android:text="Зарегистрироваться"
             android:textColor="@color/white"
             android:fontFamily="sans-serif-condensed"
-            android:textSize="28sp"/>
+            android:textSize="28sp"
+            android:layout_centerHorizontal="true"/>
 
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginTop="225dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameTil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/nameEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_edittext01"
+                    android:drawableStart="@drawable/ic_person_gray"
+                    android:drawablePadding="10dp"
+                    android:hint="Имя"
+                    android:inputType="textPersonName|textCapWords"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#CCCCCC" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailTil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/TextAppearance.MaterialComponents.Body2"
+                android:layout_below="@id/nameTil"
+                android:layout_marginTop="5dp"
                 app:hintEnabled="false">
 
                 <EditText
@@ -64,18 +96,18 @@
                     android:inputType="textEmailAddress"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#CCCCCC"
-                    style="@style/TextAppearance.MaterialComponents.Body2"/>
+                    android:textColorHint="#CCCCCC" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordTil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/emailTil"
                 android:layout_marginTop="5dp"
                 app:passwordToggleEnabled="true"
-                android:layout_below="@id/emailTil"
                 app:hintEnabled="false">
 
                 <EditText
@@ -89,36 +121,52 @@
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:textColor="@color/black"
-                    android:textColorHint="#CCCCCC"/>
+                    android:textColorHint="#CCCCCC" />
+
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/forgotTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/passwordTil"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
-                android:text="Забыли пароль?"
-                android:textColor="@color/white"/>
-
-            <Button
-                android:id="@+id/loginBut"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cPasswordTil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/forgotTV"
-                android:text="Войти"
+                android:layout_below="@id/passwordTil"
+                android:layout_marginTop="5dp"
+                app:passwordToggleEnabled="true"
+                app:hintEnabled="false">
+
+                <EditText
+                    android:id="@+id/cPasswordEt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_edittext01"
+                    android:drawableStart="@drawable/ic_key_gray"
+                    android:drawablePadding="10dp"
+                    android:hint="Повторите пароль"
+                    android:inputType="textPassword"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#CCCCCC" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+            
+            <Button
+                android:id="@+id/regBut"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/cPasswordTil"
                 android:layout_marginTop="20dp"
-                app:backgroundTint="@color/blue_2"
                 android:background="@drawable/shape_button01"
+                app:backgroundTint="@color/blue_2"
+                android:text="Окончить регистрацию"
                 android:textColor="@color/white"/>
 
 
         </RelativeLayout>
 
-</ScrollView>
+        </ScrollView>
+
 
     <TextView
         android:id="@+id/noAccTv"
@@ -127,7 +175,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:padding="10dp"
-        android:text="@string/new_user_sign"
+        android:text="@string/LogString"
         android:textColor="@color/white"/>
 
 </RelativeLayout>
